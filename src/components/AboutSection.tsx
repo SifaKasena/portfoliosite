@@ -42,8 +42,8 @@ export const AboutSection = () => {
   return (
     <section id="about" className="py-24 md:py-32 px-6 md:px-12 bg-bg-secondary">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
-          <div className="lg:col-span-5">
+        <div className="grid grid-cols-1 xl:grid-cols-12 gap-16 xl:gap-24">
+          <div className="xl:col-span-5">
             <FadeIn>
               <span className="font-display text-sm tracking-widest uppercase text-text-muted block mb-4">
                 Profile
@@ -70,7 +70,7 @@ export const AboutSection = () => {
             </FadeIn>
           </div>
 
-          <div className="lg:col-span-7">
+          <div className="xl:col-span-7">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
               <FadeIn delay={0.15}>
                 <div>
@@ -119,16 +119,16 @@ export const AboutSection = () => {
                   {experience.map((item) => (
                     <div
                       key={`${item.company}-${item.period}`}
-                      className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1"
+                      className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-x-6"
                     >
-                      <div>
+                      <div className="min-w-0">
                         <span className="font-display text-text-primary font-medium">
                           {item.role}
                         </span>
                         <span className="text-text-muted mx-2">—</span>
                         <span className="text-text-secondary">{item.company}</span>
                       </div>
-                      <span className="font-display text-sm text-text-muted shrink-0">
+                      <span className="font-display text-sm text-text-muted shrink-0 sm:ml-auto">
                         {item.period}
                       </span>
                     </div>

@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
-import { MenuIcon, XIcon } from "lucide-react";
+import { MenuIcon, XIcon, SunIcon, MoonIcon } from "lucide-react";
+import { useTheme } from "./ThemeContext";
 
 const navigationItems = ["Work", "About", "Contact"];
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
+  const { activeTheme, handleThemeToggle } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => setHasScrolled(window.scrollY > 20);
@@ -36,6 +38,13 @@ export const Header = () => {
               {item}
             </a>
           ))}
+          <button
+            onClick={handleThemeToggle}
+            className="text-text-secondary hover:text-text-primary transition-colors duration-300"
+            aria-label="Toggle theme"
+          >
+            {activeTheme === "dark" ? <SunIcon size={18} /> : <MoonIcon size={18} />}
+          </button>
         </nav>
 
         <button
@@ -60,6 +69,16 @@ export const Header = () => {
                 {item}
               </a>
             ))}
+            <button
+              onClick={() => {
+                handleThemeToggle();
+                setIsMenuOpen(false);
+              }}
+              className="flex items-center gap-2 text-sm font-display text-text-secondary hover:text-text-primary py-2 transition-colors"
+            >
+              {activeTheme === "dark" ? <SunIcon size={16} /> : <MoonIcon size={16} />}
+              {activeTheme === "dark" ? "Light mode" : "Dark mode"}
+            </button>
           </nav>
         </div>
       )}

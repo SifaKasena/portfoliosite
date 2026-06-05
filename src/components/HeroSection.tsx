@@ -36,7 +36,7 @@ export const HeroSection = () => {
           transition={{ duration: 0.8, delay: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
           className="mt-16 md:mt-24 flex flex-col md:flex-row md:items-end justify-between gap-10 md:gap-16"
         >
-          <p className="max-w-xl text-lg md:text-xl text-text-secondary leading-relaxed">
+          <p className="max-w-lg text-lg md:text-xl text-text-secondary leading-relaxed">
             Building digital products at the intersection of precision engineering and
             thoughtful design. Currently shaping the future of web experiences.
           </p>
@@ -45,7 +45,7 @@ export const HeroSection = () => {
             href="#work"
             className="group inline-flex items-center gap-3 font-display text-sm tracking-wide text-text-primary hover:text-accent transition-colors duration-300"
           >
-            <span className="uppercase">Scroll to explore</span>
+            <span className="uppercase whitespace-nowrap">Scroll to explore</span>
             <ArrowDownRight
               size={18}
               className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:translate-y-0.5"
