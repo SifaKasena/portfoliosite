@@ -1,91 +1,178 @@
-import { useState } from 'react';
-import { ExternalLinkIcon } from 'lucide-react';
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
+import { FadeIn } from "./FadeIn";
 
-const GithubIcon = ({ size = 16, className = '' }: { size?: number; className?: string }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/>
-  </svg>
-);
-export const ProjectsSection = () => {
-  const categories = ['All', 'Web', 'Mobile', 'Design'];
-  const [activeCategory, setActiveCategory] = useState('All');
-  const projects = [{
+interface Project {
+  id: number;
+  title: string;
+  category: string;
+  description: string;
+  image: string;
+  year: string;
+  tags: string[];
+  liveLink: string;
+}
+
+const projects: Project[] = [
+  {
     id: 1,
-    title: 'E-commerce Platform',
-    description: 'A full-featured online store with payment processing, user authentication, and inventory management.',
-    image: 'https://images.unsplash.com/photo-1661956602116-aa6865609028?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80',
-    category: 'Web',
-    technologies: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-    liveLink: '#',
-    githubLink: '#'
-  }, {
+    title: "Meridian Commerce",
+    category: "Web",
+    description:
+      "A full-featured e-commerce platform with real-time inventory, seamless checkout, and a design system built for scale.",
+    image:
+      "https://images.unsplash.com/photo-1661956602116-aa6865609028?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    year: "2024",
+    tags: ["React", "Node.js", "Stripe"],
+    liveLink: "#",
+  },
+  {
     id: 2,
-    title: 'Fitness Tracker App',
-    description: 'Mobile application for tracking workouts, nutrition, and progress with data visualization.',
-    image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-    category: 'Mobile',
-    technologies: ['React Native', 'Firebase', 'Redux', 'Chart.js'],
-    liveLink: '#',
-    githubLink: '#'
-  }, {
+    title: "Kinetic Fitness",
+    category: "Mobile",
+    description:
+      "Health tracking application with custom data visualizations, workout intelligence, and social coaching features.",
+    image:
+      "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    year: "2024",
+    tags: ["React Native", "Firebase", "D3"],
+    liveLink: "#",
+  },
+  {
     id: 3,
-    title: 'Company Website Redesign',
-    description: 'Complete redesign of a corporate website focusing on improved UX and conversion rate.',
-    image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80',
-    category: 'Design',
-    technologies: ['Figma', 'HTML/CSS', 'JavaScript', 'WordPress'],
-    liveLink: '#',
-    githubLink: '#'
-  }, {
+    title: "Atlas Dashboard",
+    category: "Web",
+    description:
+      "Operational workspace for distributed teams. Real-time collaboration, analytics, and a calm, dense interface.",
+    image:
+      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    year: "2023",
+    tags: ["TypeScript", "Socket.io", "Express"],
+    liveLink: "#",
+  },
+  {
     id: 4,
-    title: 'Task Management Dashboard',
-    description: 'Interactive dashboard for team task management with real-time updates and analytics.',
-    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-    category: 'Web',
-    technologies: ['React', 'TypeScript', 'Socket.io', 'Express'],
-    liveLink: '#',
-    githubLink: '#'
-  }];
-  const filteredProjects = activeCategory === 'All' ? projects : projects.filter(project => project.category === activeCategory);
-  return <section id="projects" className="py-20 bg-gray-800">
-    <div className="container mx-auto px-4">
-      <div className="text-center mb-16">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">My Projects</h2>
-        <div className="w-20 h-1 bg-blue-500 mx-auto"></div>
-      </div>
-      <div className="flex justify-center mb-10">
-        <div className="flex space-x-2 p-1 bg-gray-700 rounded-lg">
-          {categories.map(category => <button key={category} className={`px-4 py-2 rounded-md transition-colors ${activeCategory === category ? 'bg-gradient-to-r from-purple-500 to-blue-500 text-white' : 'text-gray-300 hover:text-white'}`} onClick={() => setActiveCategory(category)}>
-            {category}
-          </button>)}
+    title: "Monolith Rebrand",
+    category: "Design",
+    description:
+      "Complete identity and web experience for a fintech startup. From brand strategy to production-ready components.",
+    image:
+      "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    year: "2023",
+    tags: ["Figma", "Design System", "Next.js"],
+    liveLink: "#",
+  },
+];
+
+const categories = ["All", "Web", "Mobile", "Design"];
+
+export const ProjectsSection = () => {
+  const [activeCategory, setActiveCategory] = useState("All");
+
+  const filteredProjects =
+    activeCategory === "All"
+      ? projects
+      : projects.filter((project) => project.category === activeCategory);
+
+  return (
+    <section id="work" className="py-24 md:py-32 px-6 md:px-12">
+      <div className="max-w-7xl mx-auto">
+        <FadeIn>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 md:mb-24">
+            <div>
+              <span className="font-display text-sm tracking-widest uppercase text-text-muted block mb-4">
+                Selected Work
+              </span>
+              <h2 className="font-display text-4xl md:text-5xl font-bold tracking-tight text-text-primary">
+                Projects
+              </h2>
+            </div>
+
+            <div className="flex gap-2">
+              {categories.map((category) => {
+                const isActive = activeCategory === category;
+                return (
+                  <button
+                    key={category}
+                    onClick={() => setActiveCategory(category)}
+                    className={`font-display text-sm px-4 py-2 rounded-full border transition-all duration-300 ${
+                      isActive
+                        ? "bg-text-primary text-bg-primary border-text-primary"
+                        : "bg-transparent text-text-secondary border-border-subtle hover:border-text-muted"
+                    }`}
+                  >
+                    {category}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </FadeIn>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16 md:gap-y-24">
+          <AnimatePresence mode="popLayout">
+            {filteredProjects.map((project, index) => {
+              const isOffset = index % 2 === 1;
+              return (
+                <motion.article
+                  key={project.id}
+                  layout
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.98 }}
+                  transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+                  className={`group ${isOffset ? "md:mt-24" : ""}`}
+                >
+                  <a
+                    href={project.liveLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block"
+                  >
+                    <div className="relative overflow-hidden aspect-[4/3] mb-5 bg-bg-secondary">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover md:grayscale md:group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-[1.03]"
+                      />
+                      <div className="absolute inset-0 bg-accent/5 md:bg-accent/0 md:group-hover:bg-accent/10 transition-colors duration-500" />
+                      <div className="absolute top-4 right-4 bg-bg-primary/80 backdrop-blur-sm p-2 rounded-full opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
+                        <ArrowUpRight size={16} className="text-text-primary" />
+                      </div>
+                    </div>
+
+                    <div className="flex items-start justify-between gap-4">
+                      <div>
+                        <h3 className="font-display text-xl md:text-2xl font-medium text-text-primary mb-2 group-hover:text-accent transition-colors duration-300">
+                          {project.title}
+                        </h3>
+                        <p className="text-text-secondary leading-relaxed max-w-sm">
+                          {project.description}
+                        </p>
+                      </div>
+                      <span className="font-display text-sm text-text-muted shrink-0 mt-1">
+                        {project.year}
+                      </span>
+                    </div>
+
+                    <div className="flex flex-wrap gap-2 mt-4">
+                      {project.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="font-display text-xs px-3 py-1 bg-bg-secondary text-text-muted rounded-full"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </a>
+                </motion.article>
+              );
+            })}
+          </AnimatePresence>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-        {filteredProjects.map(project => <div key={project.id} className="bg-gray-700 rounded-lg overflow-hidden hover:transform hover:scale-[1.02] transition-all duration-300">
-          <div className="h-60 overflow-hidden">
-            <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
-          </div>
-          <div className="p-6">
-            <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-            <p className="text-gray-400 mb-4">{project.description}</p>
-            <div className="flex flex-wrap gap-2 mb-4">
-              {project.technologies.map(tech => <span key={tech} className="px-3 py-1 bg-gray-800 text-gray-300 text-xs rounded-full">
-                {tech}
-              </span>)}
-            </div>
-            <div className="flex space-x-4">
-              <a href={project.liveLink} className="flex items-center text-sm text-blue-400 hover:text-blue-300 transition-colors" target="_blank" rel="noopener noreferrer">
-                <ExternalLinkIcon size={16} className="mr-1" />
-                Live Demo
-              </a>
-              <a href={project.githubLink} className="flex items-center text-sm text-blue-400 hover:text-blue-300 transition-colors" target="_blank" rel="noopener noreferrer">
-                <GithubIcon size={16} className="mr-1" />
-                Source Code
-              </a>
-            </div>
-          </div>
-        </div>)}
-      </div>
-    </div>
-  </section>;
+    </section>
+  );
 };

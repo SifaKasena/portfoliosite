@@ -1,34 +1,68 @@
-import { useState } from 'react';
-import { MenuIcon, XIcon } from 'lucide-react';
+import { useState, useEffect } from "react";
+import { MenuIcon, XIcon } from "lucide-react";
+
+const navigationItems = ["Work", "About", "Contact"];
+
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  return <header className="sticky top-0 z-50 bg-gray-900/90 backdrop-blur-sm border-b border-gray-800">
-    <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-      <div className="flex items-center">
-        <h1 className="text-xl font-bold bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
-          Portfolio
-        </h1>
-      </div>
-      {/* Desktop Navigation */}
-      <nav className="hidden md:flex space-x-8">
-        {['Home', 'About', 'Skills', 'Projects', 'Contact'].map(item => <a key={item} href={`#${item.toLowerCase()}`} className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
-          {item}
-        </a>)}
-      </nav>
-      {/* Mobile Navigation Button */}
-      <button className="md:hidden text-gray-300 hover:text-white" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-        {isMenuOpen ? <XIcon size={24} /> : <MenuIcon size={24} />}
-      </button>
-    </div>
-    {/* Mobile Menu */}
-    {isMenuOpen && <div className="md:hidden bg-gray-800 border-b border-gray-700">
-      <div className="container mx-auto px-4 py-2">
-        <nav className="flex flex-col space-y-3 py-3">
-          {['Home', 'About', 'Skills', 'Projects', 'Contact'].map(item => <a key={item} href={`#${item.toLowerCase()}`} className="text-sm font-medium text-gray-300 hover:text-white transition-colors" onClick={() => setIsMenuOpen(false)}>
-            {item}
-          </a>)}
+  const [hasScrolled, setHasScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setHasScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        hasScrolled
+          ? "bg-bg-primary/80 backdrop-blur-md border-b border-border-subtle"
+          : "bg-transparent border-b border-transparent"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+        <a href="#home" className="font-display text-lg font-medium tracking-tight text-text-primary">
+          AJ.
+        </a>
+
+        <nav className="hidden md:flex items-center gap-10">
+          {navigationItems.map((item) => (
+            <a
+              key={item}
+              href={`#${item.toLowerCase()}`}
+              className="text-sm font-display text-text-secondary hover:text-text-primary transition-colors duration-300"
+            >
+              {item}
+            </a>
+          ))}
         </nav>
+
+        <button
+          className="md:hidden text-text-secondary hover:text-text-primary transition-colors"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          {isMenuOpen ? <XIcon size={20} /> : <MenuIcon size={20} />}
+        </button>
       </div>
-    </div>}
-  </header>;
+
+      {isMenuOpen && (
+        <div className="md:hidden bg-bg-primary/95 backdrop-blur-md border-b border-border-subtle">
+          <nav className="flex flex-col gap-1 px-6 py-4">
+            {navigationItems.map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className="text-sm font-display text-text-secondary hover:text-text-primary py-2 transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {item}
+              </a>
+            ))}
+          </nav>
+        </div>
+      )}
+    </header>
+  );
 };

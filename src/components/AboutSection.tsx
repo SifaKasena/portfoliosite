@@ -1,67 +1,144 @@
-import { BookOpenIcon, BriefcaseIcon, GraduationCapIcon } from 'lucide-react';
+import { FadeIn } from "./FadeIn";
+
+const capabilities = [
+  "Frontend Architecture",
+  "Design Systems",
+  "Interactive Prototyping",
+  "Performance Engineering",
+  "API Design & Integration",
+  "Responsive UI Development",
+];
+
+const tools = [
+  "React & Next.js",
+  "TypeScript",
+  "Tailwind CSS",
+  "Node.js",
+  "Figma",
+  "PostgreSQL",
+  "Docker",
+  "AWS",
+];
+
+const experience = [
+  {
+    role: "Senior Frontend Developer",
+    company: "Tech Innovations Inc.",
+    period: "2021 — Present",
+  },
+  {
+    role: "Full Stack Developer",
+    company: "Digital Solutions Ltd.",
+    period: "2019 — 2021",
+  },
+  {
+    role: "Freelance Developer",
+    company: "Self-Employed",
+    period: "2018 — Present",
+  },
+];
+
 export const AboutSection = () => {
-  return <section id="about" className="py-20 bg-gray-800">
-    <div className="container mx-auto px-4">
-      <div className="text-center mb-16">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">About Me</h2>
-        <div className="w-20 h-1 bg-blue-500 mx-auto"></div>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-        <div>
-          <p className="text-gray-300 text-lg mb-6">
-            I'm a passionate software developer with over 5 years of
-            experience in building web applications. I specialize in frontend
-            development with React, but also have extensive experience with
-            backend technologies and cloud services.
-          </p>
-          <p className="text-gray-300 text-lg mb-6">
-            When I'm not coding, you can find me hiking in the mountains,
-            reading science fiction, or experimenting with new cooking
-            recipes. I believe in continuous learning and staying updated with
-            the latest technologies and industry trends.
-          </p>
-          <div className="flex flex-col md:flex-row gap-6 mt-8">
-            <div className="flex items-center">
-              <BriefcaseIcon className="text-blue-400 mr-2" size={20} />
-              <span className="text-gray-300">5+ Years Experience</span>
+  return (
+    <section id="about" className="py-24 md:py-32 px-6 md:px-12 bg-bg-secondary">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
+          <div className="lg:col-span-5">
+            <FadeIn>
+              <span className="font-display text-sm tracking-widest uppercase text-text-muted block mb-4">
+                Profile
+              </span>
+              <h2 className="font-display text-4xl md:text-5xl font-bold tracking-tight text-text-primary mb-8">
+                About
+              </h2>
+            </FadeIn>
+
+            <FadeIn delay={0.1}>
+              <div className="space-y-6 text-lg text-text-secondary leading-relaxed">
+                <p>
+                  I am a software developer with over five years of experience
+                  building web applications that people actually want to use. My
+                  work sits at the intersection of engineering discipline and
+                  design intuition.
+                </p>
+                <p>
+                  I believe the best interfaces are the ones that feel invisible —
+                  fast, predictable, and quietly beautiful. When I am not shipping
+                  code, I am hiking, reading, or refining my sourdough technique.
+                </p>
+              </div>
+            </FadeIn>
+          </div>
+
+          <div className="lg:col-span-7">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
+              <FadeIn delay={0.15}>
+                <div>
+                  <h3 className="font-display text-sm tracking-widest uppercase text-text-muted mb-6">
+                    Capabilities
+                  </h3>
+                  <ul className="space-y-3">
+                    {capabilities.map((capability) => (
+                      <li
+                        key={capability}
+                        className="font-display text-text-primary flex items-center gap-3"
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
+                        {capability}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </FadeIn>
+
+              <FadeIn delay={0.2}>
+                <div>
+                  <h3 className="font-display text-sm tracking-widest uppercase text-text-muted mb-6">
+                    Tools
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {tools.map((tool) => (
+                      <span
+                        key={tool}
+                        className="font-display text-sm px-3 py-1.5 bg-bg-primary border border-border-subtle text-text-secondary rounded-md"
+                      >
+                        {tool}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </FadeIn>
             </div>
-            <div className="flex items-center">
-              <BookOpenIcon className="text-blue-400 mr-2" size={20} />
-              <span className="text-gray-300">15+ Projects Completed</span>
-            </div>
-            <div className="flex items-center">
-              <GraduationCapIcon className="text-blue-400 mr-2" size={20} />
-              <span className="text-gray-300">Computer Science Degree</span>
-            </div>
+
+            <FadeIn delay={0.25}>
+              <div className="mt-16 pt-8 border-t border-border-subtle">
+                <h3 className="font-display text-sm tracking-widest uppercase text-text-muted mb-6">
+                  Experience
+                </h3>
+                <div className="space-y-6">
+                  {experience.map((item) => (
+                    <div
+                      key={`${item.company}-${item.period}`}
+                      className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1"
+                    >
+                      <div>
+                        <span className="font-display text-text-primary font-medium">
+                          {item.role}
+                        </span>
+                        <span className="text-text-muted mx-2">—</span>
+                        <span className="text-text-secondary">{item.company}</span>
+                      </div>
+                      <span className="font-display text-sm text-text-muted shrink-0">
+                        {item.period}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </FadeIn>
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-gray-700 p-6 rounded-lg hover:bg-gray-600 transition-colors">
-            <h3 className="text-xl font-semibold mb-2">Education</h3>
-            <p className="text-gray-300">B.S. in Computer Science</p>
-            <p className="text-gray-400">University of Technology</p>
-            <p className="text-gray-500 text-sm">2015 - 2019</p>
-          </div>
-          <div className="bg-gray-700 p-6 rounded-lg hover:bg-gray-600 transition-colors">
-            <h3 className="text-xl font-semibold mb-2">Current Role</h3>
-            <p className="text-gray-300">Senior Frontend Developer</p>
-            <p className="text-gray-400">Tech Innovations Inc.</p>
-            <p className="text-gray-500 text-sm">2021 - Present</p>
-          </div>
-          <div className="bg-gray-700 p-6 rounded-lg hover:bg-gray-600 transition-colors">
-            <h3 className="text-xl font-semibold mb-2">Previous Role</h3>
-            <p className="text-gray-300">Full Stack Developer</p>
-            <p className="text-gray-400">Digital Solutions Ltd.</p>
-            <p className="text-gray-500 text-sm">2019 - 2021</p>
-          </div>
-          <div className="bg-gray-700 p-6 rounded-lg hover:bg-gray-600 transition-colors">
-            <h3 className="text-xl font-semibold mb-2">Freelance</h3>
-            <p className="text-gray-300">Web Developer</p>
-            <p className="text-gray-400">Self-Employed</p>
-            <p className="text-gray-500 text-sm">2018 - Present</p>
-          </div>
-        </div>
       </div>
-    </div>
-  </section>;
+    </section>
+  );
 };
