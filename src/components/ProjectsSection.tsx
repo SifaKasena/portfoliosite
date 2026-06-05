@@ -2,68 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { FadeIn } from "./FadeIn";
-
-interface Project {
-  id: number;
-  title: string;
-  category: string;
-  description: string;
-  image: string;
-  year: string;
-  tags: string[];
-  liveLink: string;
-}
-
-const projects: Project[] = [
-  {
-    id: 1,
-    title: "Meridian Commerce",
-    category: "Web",
-    description:
-      "A full-featured e-commerce platform with real-time inventory, seamless checkout, and a design system built for scale.",
-    image:
-      "https://images.unsplash.com/photo-1661956602116-aa6865609028?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-    year: "2024",
-    tags: ["React", "Node.js", "Stripe"],
-    liveLink: "#",
-  },
-  {
-    id: 2,
-    title: "Kinetic Fitness",
-    category: "Mobile",
-    description:
-      "Health tracking application with custom data visualizations, workout intelligence, and social coaching features.",
-    image:
-      "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-    year: "2024",
-    tags: ["React Native", "Firebase", "D3"],
-    liveLink: "#",
-  },
-  {
-    id: 3,
-    title: "Atlas Dashboard",
-    category: "Web",
-    description:
-      "Operational workspace for distributed teams. Real-time collaboration, analytics, and a calm, dense interface.",
-    image:
-      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-    year: "2023",
-    tags: ["TypeScript", "Socket.io", "Express"],
-    liveLink: "#",
-  },
-  {
-    id: 4,
-    title: "Monolith Rebrand",
-    category: "Design",
-    description:
-      "Complete identity and web experience for a fintech startup. From brand strategy to production-ready components.",
-    image:
-      "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-    year: "2023",
-    tags: ["Figma", "Design System", "Next.js"],
-    liveLink: "#",
-  },
-];
+import projectsData from "../data/projects.json";
 
 const categories = ["All", "Web", "Mobile", "Design"];
 
@@ -72,8 +11,8 @@ export const ProjectsSection = () => {
 
   const filteredProjects =
     activeCategory === "All"
-      ? projects
-      : projects.filter((project) => project.category === activeCategory);
+      ? projectsData
+      : projectsData.filter((project) => project.category === activeCategory);
 
   return (
     <section id="work" className="py-24 md:py-32 px-6 md:px-12">

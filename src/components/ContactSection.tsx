@@ -1,5 +1,6 @@
 import { FadeIn } from "./FadeIn";
 import { ArrowUpRight } from "lucide-react";
+import contactData from "../data/contact.json";
 
 export const ContactSection = () => {
   return (
@@ -12,32 +13,31 @@ export const ContactSection = () => {
                 Contact
               </span>
               <h2 className="font-display text-4xl md:text-5xl font-bold tracking-tight text-text-primary mb-6">
-                Let&apos;s work together
+                {contactData.headline}
               </h2>
               <p className="text-lg text-text-secondary leading-relaxed max-w-md">
-                I am currently open to new opportunities and collaborations. If you
-                have a project in mind, or just want to say hello, send a message.
+                {contactData.body}
               </p>
 
               <div className="mt-10 space-y-4">
                 <a
-                  href="mailto:hello@alexjohnson.dev"
+                  href={`mailto:${contactData.email}`}
                   className="group inline-flex items-center gap-3 font-display text-text-primary hover:text-accent transition-colors duration-300"
                 >
-                  <span className="text-lg">hello@alexjohnson.dev</span>
+                  <span className="text-lg">{contactData.email}</span>
                   <ArrowUpRight
                     size={18}
                     className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                   />
                 </a>
                 <div className="flex gap-6">
-                  {["GitHub", "LinkedIn", "Twitter"].map((platform) => (
+                  {contactData.socials.map((social) => (
                     <a
-                      key={platform}
-                      href="#"
+                      key={social.platform}
+                      href={social.url}
                       className="font-display text-sm text-text-secondary hover:text-text-primary transition-colors duration-300"
                     >
-                      {platform}
+                      {social.platform}
                     </a>
                   ))}
                 </div>

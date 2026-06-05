@@ -1,0 +1,46 @@
+[
+  {
+    "id": 1,
+    "title": "Meridian Commerce",
+    "category": "Web",
+    "description": "A full-featured e-commerce platform with real-time inventory, seamless checkout, and a design system built for scale.",
+    "image": "https://images.unsplash.com/photo-1661956602116-aa6865609028?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    "year": "2024",
+    "tags": ["React", "Node.js", "Stripe"],
+    "liveLink": "#",
+    "githubLink": "#"
+  },
+  {
+    "id": 2,
+    "title": "Kinetic Fitness",
+    "category": "Mobile",
+    "description": "Health tracking application with custom data visualizations, workout intelligence, and social coaching features.",
+    "image": "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    "year": "2024",
+    "tags": ["React Native", "Firebase", "D3"],
+    "liveLink": "#",
+    "githubLink": "#"
+  },
+  {
+    "id": 3,
+    "title": "Atlas Dashboard",
+    "category": "Web",
+    "description": "Operational workspace for distributed teams. Real-time collaboration, analytics, and a calm, dense interface.",
+    "image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    "year": "2023",
+    "tags": ["TypeScript", "Socket.io", "Express"],
+    "liveLink": "#",
+    "githubLink": "#"
+  },
+  {
+    "id": 4,
+    "title": "Monolith Rebrand",
+    "category": "Design",
+    "description": "Complete identity and web experience for a fintech startup. From brand strategy to production-ready components.",
+    "image": "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    "year": "2023",
+    "tags": ["Figma", "Design System", "Next.js"],
+    "liveLink": "#",
+    "githubLink": "#"
+  }
+]

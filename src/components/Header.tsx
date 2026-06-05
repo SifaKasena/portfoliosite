@@ -25,7 +25,7 @@ export const Header = () => {
     >
       <div className="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
         <a href="#home" className="font-display text-lg font-medium tracking-tight text-text-primary">
-          AJ.
+          CS.
         </a>
 
         <nav className="hidden md:flex items-center gap-10">

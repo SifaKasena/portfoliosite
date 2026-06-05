@@ -1,0 +1,41 @@
+{
+  "paragraphs": [
+    "I am a software developer with over five years of experience building web applications that people actually want to use. My work sits at the intersection of engineering discipline and design intuition.",
+    "I believe the best interfaces are the ones that feel invisible — fast, predictable, and quietly beautiful. When I am not shipping code, I am hiking, reading, or refining my sourdough technique."
+  ],
+  "capabilities": [
+    "Frontend Architecture",
+    "Design Systems",
+    "Interactive Prototyping",
+    "Performance Engineering",
+    "API Design & Integration",
+    "Responsive UI Development"
+  ],
+  "tools": [
+    "React & Next.js",
+    "TypeScript",
+    "Tailwind CSS",
+    "Node.js",
+    "Figma",
+    "PostgreSQL",
+    "Docker",
+    "AWS"
+  ],
+  "experience": [
+    {
+      "role": "Senior Frontend Developer",
+      "company": "Tech Innovations Inc.",
+      "period": "2021 — Present"
+    },
+    {
+      "role": "Full Stack Developer",
+      "company": "Digital Solutions Ltd.",
+      "period": "2019 — 2021"
+    },
+    {
+      "role": "Freelance Developer",
+      "company": "Self-Employed",
+      "period": "2018 — Present"
+    }
+  ]
+}

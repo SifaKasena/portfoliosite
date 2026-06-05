@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowDownRight } from "lucide-react";
+import heroData from "../data/hero.json";
 
 export const HeroSection = () => {
   return (
@@ -15,7 +16,7 @@ export const HeroSection = () => {
           className="mb-12 md:mb-16"
         >
           <span className="font-display text-sm tracking-widest uppercase text-text-muted">
-            Developer & Designer — San Francisco
+            {heroData.title} — {heroData.location}
           </span>
         </motion.div>
 
@@ -25,27 +26,26 @@ export const HeroSection = () => {
           transition={{ duration: 1, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
           className="font-display text-[clamp(3.5rem,12vw,10rem)] font-bold leading-[0.9] tracking-tight text-text-primary"
         >
-          Alex
+          {heroData.firstName}
           <br />
-          Johnson
+          {heroData.lastName}
         </motion.h1>
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
-          className="mt-16 md:mt-24 flex flex-col md:flex-row md:items-end justify-between gap-10 md:gap-16"
+          className="mt-20 md:mt-28 flex flex-col md:flex-row md:items-end justify-between gap-10 md:gap-16"
         >
           <p className="max-w-lg text-lg md:text-xl text-text-secondary leading-relaxed">
-            Building digital products at the intersection of precision engineering and
-            thoughtful design. Currently shaping the future of web experiences.
+            {heroData.shortBio}
           </p>
 
           <a
             href="#work"
             className="group inline-flex items-center gap-3 font-display text-sm tracking-wide text-text-primary hover:text-accent transition-colors duration-300"
           >
-            <span className="uppercase whitespace-nowrap">Scroll to explore</span>
+            <span className="uppercase whitespace-nowrap">{heroData.scrollCue}</span>
             <ArrowDownRight
               size={18}
               className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:translate-y-0.5"

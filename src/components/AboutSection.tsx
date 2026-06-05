@@ -1,42 +1,5 @@
 import { FadeIn } from "./FadeIn";
-
-const capabilities = [
-  "Frontend Architecture",
-  "Design Systems",
-  "Interactive Prototyping",
-  "Performance Engineering",
-  "API Design & Integration",
-  "Responsive UI Development",
-];
-
-const tools = [
-  "React & Next.js",
-  "TypeScript",
-  "Tailwind CSS",
-  "Node.js",
-  "Figma",
-  "PostgreSQL",
-  "Docker",
-  "AWS",
-];
-
-const experience = [
-  {
-    role: "Senior Frontend Developer",
-    company: "Tech Innovations Inc.",
-    period: "2021 — Present",
-  },
-  {
-    role: "Full Stack Developer",
-    company: "Digital Solutions Ltd.",
-    period: "2019 — 2021",
-  },
-  {
-    role: "Freelance Developer",
-    company: "Self-Employed",
-    period: "2018 — Present",
-  },
-];
+import aboutData from "../data/about.json";
 
 export const AboutSection = () => {
   return (
@@ -55,17 +18,9 @@ export const AboutSection = () => {
 
             <FadeIn delay={0.1}>
               <div className="space-y-6 text-lg text-text-secondary leading-relaxed">
-                <p>
-                  I am a software developer with over five years of experience
-                  building web applications that people actually want to use. My
-                  work sits at the intersection of engineering discipline and
-                  design intuition.
-                </p>
-                <p>
-                  I believe the best interfaces are the ones that feel invisible —
-                  fast, predictable, and quietly beautiful. When I am not shipping
-                  code, I am hiking, reading, or refining my sourdough technique.
-                </p>
+                {aboutData.paragraphs.map((paragraph, index) => (
+                  <p key={index}>{paragraph}</p>
+                ))}
               </div>
             </FadeIn>
           </div>
@@ -78,7 +33,7 @@ export const AboutSection = () => {
                     Capabilities
                   </h3>
                   <ul className="space-y-3">
-                    {capabilities.map((capability) => (
+                    {aboutData.capabilities.map((capability) => (
                       <li
                         key={capability}
                         className="font-display text-text-primary flex items-center gap-3"
@@ -97,7 +52,7 @@ export const AboutSection = () => {
                     Tools
                   </h3>
                   <div className="flex flex-wrap gap-2">
-                    {tools.map((tool) => (
+                    {aboutData.tools.map((tool) => (
                       <span
                         key={tool}
                         className="font-display text-sm px-3 py-1.5 bg-bg-primary border border-border-subtle text-text-secondary rounded-md"
@@ -116,7 +71,7 @@ export const AboutSection = () => {
                   Experience
                 </h3>
                 <div className="space-y-6">
-                  {experience.map((item) => (
+                  {aboutData.experience.map((item) => (
                     <div
                       key={`${item.company}-${item.period}`}
                       className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-x-6"
