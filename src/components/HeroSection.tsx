@@ -1,14 +1,21 @@
 import { motion } from "framer-motion";
 import { ArrowDownRight } from "lucide-react";
 import heroData from "../data/hero.json";
+import { SpectralDrape } from "./SpectralDrape";
+import { useTheme } from "./ThemeContext";
 
 export const HeroSection = () => {
+  const { activeTheme } = useTheme();
+
+  const drapeColors: [string, string] = activeTheme === "dark" ? ["#6A4BFF", "#A855F7"] : ["#3A1DB8", "#8B5CF6"];
+  const drapeBackground = activeTheme === "dark" ? "#0a0a0a" : "#fafaf9";
+
   return (
     <section
       id="home"
       className="relative min-h-[100dvh] flex flex-col items-center justify-center pt-20 md:pt-24 pb-20 md:pb-28 px-6 md:px-12"
     >
-      <div className="max-w-7xl mx-auto w-full">
+      <div className="max-w-7xl mx-auto w-full relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -52,6 +59,17 @@ export const HeroSection = () => {
             />
           </a>
         </motion.div>
+      </div>
+
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <SpectralDrape
+          colors={drapeColors}
+          backgroundColor={drapeBackground}
+          strands={8}
+          amplitude={1}
+          flow={0.5}
+          className="absolute inset-0"
+        />
       </div>
 
       <div className="absolute bottom-0 left-0 right-0 h-px bg-border-subtle" />

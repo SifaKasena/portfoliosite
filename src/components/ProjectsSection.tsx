@@ -54,59 +54,61 @@ export const ProjectsSection = () => {
             {filteredProjects.map((project, index) => {
               const isOffset = index % 2 === 1;
               return (
-                <motion.article
-                  key={project.id}
-                  layout
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.98 }}
-                  transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-                  className={`group ${isOffset ? "md:mt-24" : ""}`}
-                >
-                  <a
-                    href={project.liveLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block"
+                <FadeIn delay={0.05*index}>
+                  <motion.article
+                    key={project.id}
+                    layout
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.98 }}
+                    transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+                    className={`group ${isOffset ? "md:mt-24" : ""}`}
                   >
-                    <div className="relative overflow-hidden aspect-[4/3] mb-5 bg-bg-secondary">
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-full object-cover md:grayscale md:group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-[1.03]"
-                      />
-                      <div className="absolute inset-0 bg-accent/5 md:bg-accent/0 md:group-hover:bg-accent/10 transition-colors duration-500" />
-                      <div className="absolute top-4 right-4 bg-bg-primary/80 backdrop-blur-sm p-2 rounded-full opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
-                        <ArrowUpRight size={16} className="text-text-primary" />
+                    <a
+                      href={project.liveLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block"
+                    >
+                      <div className="relative overflow-hidden aspect-[4/3] mb-5 bg-bg-secondary">
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          className="w-full h-full object-cover md:grayscale md:group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-[1.03]"
+                        />
+                        <div className="absolute inset-0 bg-accent/5 md:bg-accent/0 md:group-hover:bg-accent/10 transition-colors duration-500" />
+                        <div className="absolute top-4 right-4 bg-bg-primary/80 backdrop-blur-sm p-2 rounded-full opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
+                          <ArrowUpRight size={16} className="text-text-primary" />
+                        </div>
                       </div>
-                    </div>
 
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <h3 className="font-display text-xl md:text-2xl font-medium text-text-primary mb-2 group-hover:text-accent transition-colors duration-300">
-                          {project.title}
-                        </h3>
-                        <p className="text-text-secondary leading-relaxed max-w-sm">
-                          {project.description}
-                        </p>
-                      </div>
-                      <span className="font-display text-sm text-text-muted shrink-0 mt-1">
-                        {project.year}
-                      </span>
-                    </div>
-
-                    <div className="flex flex-wrap gap-2 mt-4">
-                      {project.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="font-display text-xs px-3 py-1 bg-bg-secondary text-text-muted rounded-full"
-                        >
-                          {tag}
+                      <div className="flex items-start justify-between gap-4">
+                        <div>
+                          <h3 className="font-display text-xl md:text-2xl font-medium text-text-primary mb-2 group-hover:text-accent transition-colors duration-300">
+                            {project.title}
+                          </h3>
+                          <p className="text-lg text-text-secondary leading-relaxed max-w-sm">
+                            {project.description}
+                          </p>
+                        </div>
+                        <span className="font-display text-sm text-text-muted shrink-0 mt-1">
+                          {project.year}
                         </span>
-                      ))}
-                    </div>
-                  </a>
-                </motion.article>
+                      </div>
+
+                      <div className="flex flex-wrap gap-2 mt-4">
+                        {project.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="font-display text-xs px-3 py-1 bg-bg-secondary text-text-muted rounded-full"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </a>
+                  </motion.article>
+                </FadeIn>
               );
             })}
           </AnimatePresence>

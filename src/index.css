@@ -39,6 +39,16 @@
   --color-border-subtle: var(--border-subtle);
 }
 
+/* Touch target floor (WCAG 2.2 SC 2.5.8). Must live in a layer so Tailwind
+   responsive visibility utilities (md:hidden) can override it — unlayered
+   styles beat layered ones at any specificity. */
+@layer utilities {
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
 html {
   scroll-behavior: smooth;
   background-color: var(--bg-primary);
@@ -46,6 +56,9 @@ html {
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Adaptation: respect user font-scale, prevent horizontal overflow at 320px */
+  overflow-x: hidden;
+  word-break: break-word;
 }
 
 body::before {
