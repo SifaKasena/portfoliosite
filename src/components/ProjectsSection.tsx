@@ -51,6 +51,11 @@ export const ProjectsSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16 md:gap-y-24">
           <AnimatePresence mode="popLayout">
+            {(!Array.isArray(filteredProjects) || filteredProjects.length === 0) && (
+              <div className="col-span-full py-16 text-center">
+                <p className="font-display text-xl md:text-2xl text-text-secondary">NO PROJECTS TO SHOWCASE.</p>
+              </div>
+            )}
             {filteredProjects.map((project, index) => {
               const isOffset = index % 2 === 1;
               return (
